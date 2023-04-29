@@ -62,7 +62,7 @@ class Profile:
                     tweet_url = Finder.find_status_url(tweet)
                     replies = Finder.find_replies(tweet)
                     retweets = Finder.find_shares(tweet)
-                    status = Finder.find_status(tweet)
+                    status = Finder.find_status(tweet)[-1]
                     username = tweet_url.split("/")[3]
                     is_retweet = True if self.twitter_username.lower() != username.lower() else False
                     name = Finder.find_name_from_tweet(
