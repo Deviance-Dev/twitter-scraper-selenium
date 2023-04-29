@@ -59,10 +59,10 @@ class Profile:
 
             while len(self.posts_data) < self.tweets_count:
                 for tweet in present_tweets:
-                    status, tweet_url = Finder.find_status(tweet)
+                    tweet_url = Finder.find_status(tweet)
                     replies = Finder.find_replies(tweet)
                     retweets = Finder.find_shares(tweet)
-                    status = status[-1]
+                    status = Finder.find_status(tweet)
                     username = tweet_url.split("/")[3]
                     is_retweet = True if self.twitter_username.lower() != username.lower() else False
                     name = Finder.find_name_from_tweet(
