@@ -32,7 +32,7 @@ class Utilities:
         slow internet connection issues
         """
         try:
-            WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            WebDriverWait(driver, 20).until(EC.presence_of_element_located(
                 (By.CSS_SELECTOR, '[data-testid="tweet"]')))
         except WebDriverException:
             logger.exception(
