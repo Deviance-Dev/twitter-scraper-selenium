@@ -68,8 +68,19 @@ class Finder:
         """finds status and link from the tweet"""
         try:
             anchor = tweet.find_element(
-                By.CSS_SELECTOR, "a[aria-label][dir]")
-            return (anchor.get_attribute("href").split("/"), anchor.get_attribute("href"))
+                By.CSS_SELECTOR, "a[aria-label]")
+            return (anchor.get_attribute("href").split("/"))
+        except Exception as ex:
+            logger.exception("Error at method find_status : {}".format(ex))
+            return []
+
+    @staticmethod
+    def find_status_url(tweet) -> Union[list, tuple]:
+        """finds status and link from the tweet"""
+        try:
+            anchor = tweet.find_element(
+                By.CSS_SELECTOR, "a[aria-label]")
+            return (anchor.get_attribute("href"))
         except Exception as ex:
             logger.exception("Error at method find_status : {}".format(ex))
             return []
