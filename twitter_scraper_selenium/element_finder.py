@@ -48,6 +48,8 @@ class Finder:
         except Exception as ex:
             logger.exception("Error at method find_replies : {}".format(ex))
             return ""
+        except NoSuchElementException as ex:
+            return ""
 
     @staticmethod
     def find_shares(tweet) -> Union[int, str]:
