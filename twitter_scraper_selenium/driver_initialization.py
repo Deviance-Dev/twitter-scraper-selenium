@@ -46,6 +46,8 @@ class Initializer:
         if self.profile and self.browser_name.lower() == "chrome":
             browser_option.add_argument(
                 "user-data-dir={}".format(self.profile))
+            browser_option.add_argument(
+                "--profile-directory={}".format('Profile 1'))
         if self.profile and self.browser_name.lower() == "firefox":
             logger.setLevel(logging.INFO)
             logger.info("Loading Profile from {}".format(self.profile))
