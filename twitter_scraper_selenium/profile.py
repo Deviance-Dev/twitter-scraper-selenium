@@ -59,7 +59,7 @@ class Profile:
 
             while len(self.posts_data) < self.tweets_count:
                 for tweet in present_tweets:
-                    tweet_url = Finder.find_status(tweet)
+                    tweet_url = Finder.find_status_url(tweet)
                     replies = Finder.find_replies(tweet)
                     retweets = Finder.find_shares(tweet)
                     status = Finder.find_status(tweet)
