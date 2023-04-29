@@ -43,7 +43,7 @@ class Utilities:
         """Helps to scroll down web page"""
         try:
             body = driver.find_element(By.CSS_SELECTOR, 'body')
-            for _ in range(randint(1, 3)):
+            for _ in range(randint(3, 9)):
                 body.send_keys(Keys.PAGE_DOWN)
         except Exception as ex:
             logger.exception("Error at scroll_down method {}".format(ex))
