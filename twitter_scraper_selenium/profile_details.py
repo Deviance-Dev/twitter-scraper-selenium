@@ -18,7 +18,7 @@ class Profile_detail:
     def __init__(self, username: str, proxy: Union[str, None]) -> None:
         self.username = username
         self.authorization_key = \
-            'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA'
+            'Bearer AAAAAAAAAAAAAAAAAAAAANQ92QAAAAAAwG7qUkTliDU79Hf%2B4zzCCzwB7rA%3DCSiSZ2ps2TtEqtPQ2dmw0V1gPjYagnnmDPGGi15LvcnzH1f2ui'
         self.proxy = proxy
 
     def scrape(self):
