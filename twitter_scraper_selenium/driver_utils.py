@@ -32,7 +32,7 @@ class Utilities:
         slow internet connection issues
         """
         try:
-            WebDriverWait(driver, 20).until(EC.presence_of_element_located(
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located(
                 (By.CSS_SELECTOR, '[data-testid="tweet"]')))
         except WebDriverException:
             logger.exception(
@@ -43,7 +43,7 @@ class Utilities:
         """Helps to scroll down web page"""
         try:
             body = driver.find_element(By.CSS_SELECTOR, 'body')
-            for _ in range(randint(3, 9)):
+            for _ in range(randint(1, 3)):
                 body.send_keys(Keys.PAGE_DOWN)
         except Exception as ex:
             logger.exception("Error at scroll_down method {}".format(ex))

@@ -5,6 +5,7 @@ from .scraping_utilities import Scraping_utilities
 import os
 import logging
 import json
+from .profile_api import Profile_api
 
 logger = logging.getLogger(__name__)
 format = logging.Formatter(
@@ -18,20 +19,17 @@ class Profile_detail:
     def __init__(self, username: str, proxy: Union[str, None]) -> None:
         self.username = username
         self.authorization_key = \
-            'Bearer AAAAAAAAAAAAAAAAAAAAANQ92QAAAAAAwG7qUkTliDU79Hf%2B4zzCCzwB7rA%3DCSiSZ2ps2TtEqtPQ2dmw0V1gPjYagnnmDPGGi15LvcnzH1f2ui'
+            'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA'
         self.proxy = proxy
 
     def scrape(self):
-        guest_token = Scraping_utilities.find_x_guest_token(
-            authorization_key=self.authorization_key, proxy=self.proxy)
-        headers = Scraping_utilities.build_keyword_headers(
-            authorization_key=self.authorization_key, x_guest_token=guest_token)
-        response = Scraping_utilities.make_http_request(
-            "https://api.twitter.com/1.1/users/show.json?screen_name={}".format(
-                self.username),
-            headers=headers, proxy=self.proxy)
+        params = Scraping_utilities.build_params_for_profile_details(self.username)
+        headers = Scraping_utilities.build_topic_headers(Scraping_utilities.find_x_guest_token(self.authorization_key),
+                                                         self.authorization_key, self.username)
+        response = Scraping_utilities.make_http_request_with_params(
+                    f"https://twitter.com/i/api/graphql/G3KGOASz96M-Qu0nwmGXNg/UserByScreenName", params, headers, self.proxy)
         if response:
-            return response
+            return response.get("data")
         else:
             logger.debug('Failed to Make Request!')
 
@@ -45,7 +43,6 @@ def get_profile_details(twitter_username: str, proxy: Union[str, None] = None,
         proxy (Union[str, None], optional): Optional parameter, if user wants to use proxy for scraping. If the proxy is authenticated proxy then the proxy format is username:password@host:port. Defaults to None.
         filename (str, optional): Filename where to save the output. Defaults to "".
         directory (str, optional): Directory where to save the file. Defaults to os.getcwd().
-
     Returns:
         (dict | none): None if data was saved, else JSON String.
     """
