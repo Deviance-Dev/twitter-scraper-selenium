@@ -50,7 +50,6 @@ class Keyword:
         """changes the class member driver value to driver on call"""
         self.driver = Initializer(
             self.browser, self.headless, self.proxy, self.browser_profile).init()
-            self.browser, self.headless, self.proxy).init()
 
     def close_driver(self):
         self.driver.close()
