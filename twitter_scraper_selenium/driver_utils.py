@@ -7,6 +7,7 @@ import time
 from selenium.webdriver.common.keys import Keys
 from random import randint
 import logging
+import random
 
 logger = logging.getLogger(__name__)
 format = logging.Formatter(
