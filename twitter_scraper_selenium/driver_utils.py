@@ -42,9 +42,12 @@ class Utilities:
     def scroll_down(driver) -> None:
         """Helps to scroll down web page"""
         try:
+            start = time.time()
             body = driver.find_element(By.CSS_SELECTOR, 'body')
-            for _ in range(randint(1, 3)):
+            for _ in range(randint(2, 4)):
                 body.send_keys(Keys.PAGE_DOWN)
+                time.sleep(random.uniform(0.2, 0.3))
+            print("scroll_down took " + str(time.time()-start));
         except Exception as ex:
             logger.exception("Error at scroll_down method {}".format(ex))
 
@@ -53,8 +56,10 @@ class Utilities:
         """waits until the page have completed loading"""
         try:
             state = ""
+            start = time.time()
             while state != "complete":
-                time.sleep(randint(3, 5))
+                time.sleep(random.uniform(0.1, 0.2))
                 state = driver.execute_script("return document.readyState")
+            print("wait_until_completion() took " + str(time.time()-start));
         except Exception as ex:
             logger.exception('Error at wait_until_completion: {}'.format(ex))
