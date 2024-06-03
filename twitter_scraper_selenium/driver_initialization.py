@@ -96,7 +96,7 @@ class Initializer:
                                          options=self.set_properties(browser_option), seleniumwire_options=options)
 
             # automatically installs geckodriver and initialize it and returns the instance
-            return webdriver.Firefox(service=FirefoxService(executable_path='/root/.wdm/drivers/geckodriver/linux64/v0.33.0/geckodriver'), options=self.set_properties(browser_option))
+            return webdriver.Firefox(service=FirefoxService(executable_path='/usr/local/bin/geckodriver'), options=self.set_properties(browser_option))
         else:
             # if browser_name is not chrome neither firefox than raise an exception
             raise Exception("Browser not supported!")
