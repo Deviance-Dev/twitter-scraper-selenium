@@ -4,3 +4,6 @@ test.py
 twitter_scraper_selenium/__pycache__
 output_structure.MD
 *.csv
+build
+dist
+twitter_scraper_selenium.egg-info

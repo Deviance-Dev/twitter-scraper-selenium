@@ -7,6 +7,7 @@ import time
 from selenium.webdriver.common.keys import Keys
 from random import randint
 import logging
+import random
 
 logger = logging.getLogger(__name__)
 format = logging.Formatter(
@@ -42,9 +43,13 @@ class Utilities:
     def scroll_down(driver) -> None:
         """Helps to scroll down web page"""
         try:
+            start = time.time()
             body = driver.find_element(By.CSS_SELECTOR, 'body')
-            for _ in range(randint(1, 3)):
-                body.send_keys(Keys.PAGE_DOWN)
+            last_height = driver.execute_script("return document.documentElement.scrollHeight")
+            for _ in range(randint(2, 4)):
+                driver.execute_script("window.scrollTo(0, arguments[0]);", last_height)
+                time.sleep(random.uniform(0.2, 0.3))
+            print("scroll_down took SSSS " + str(time.time()-start));
         except Exception as ex:
             logger.exception("Error at scroll_down method {}".format(ex))
 
