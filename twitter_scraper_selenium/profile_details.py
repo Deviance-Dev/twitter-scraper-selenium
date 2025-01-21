@@ -27,7 +27,7 @@ class Profile_detail:
         headers = Scraping_utilities.build_topic_headers(Scraping_utilities.find_x_guest_token(self.authorization_key),
                                                          self.authorization_key, self.username)
         response = Scraping_utilities.make_http_request_with_params(
-                    f"https://x.com/i/api/graphql/QGIw94L0abhuohrr76cSbw/UserByScreenName", params, headers, self.proxy)
+                    f"https://twitter.com/i/api/graphql/G3KGOASz96M-Qu0nwmGXNg/UserByScreenName", params, headers, self.proxy)
         if response:
             return response.get("data")
         else:
