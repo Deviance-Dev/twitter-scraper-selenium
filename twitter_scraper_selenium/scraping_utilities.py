@@ -228,7 +228,7 @@ class Scraping_utilities:
                 return response.json()['guest_token']
 
             response = requests.post(
-                'https://api.twitter.com/1.1/guest/activate.json', headers=headers)
+                'https://api.x.com/1.1/guest/activate.json', headers=headers)
             return response.json()['guest_token']
         except Exception as ex:
             logger.warning("Error at find_x_guest_token: {}".format(ex))
